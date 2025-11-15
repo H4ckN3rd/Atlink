@@ -7,14 +7,21 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { Logo } from '@/components/logo'
 
+type UserRole = 'admin' | 'student';
+
 const navLinks = [
-  { href: '/', label: 'Dashboard', icon: Home },
-  { href: '/attendance', label: 'Attendance', icon: CalendarCheck },
-  { href: '/users', label: 'Users', icon: Users },
+  { href: '/', label: 'Dashboard', icon: Home, roles: ['admin', 'student'] },
+  { href: '/attendance', label: 'Attendance', icon: CalendarCheck, roles: ['admin', 'student'] },
+  { href: '/users', label: 'Users', icon: Users, roles: ['admin'] },
 ]
 
-export function MobileNav() {
+type MobileNavProps = {
+  userRole: UserRole;
+}
+
+export function MobileNav({ userRole }: MobileNavProps) {
   const pathname = usePathname()
+  const accessibleLinks = navLinks.filter(link => link.roles.includes(userRole));
 
   return (
     <nav className="grid gap-2 text-lg font-medium">
@@ -25,7 +32,7 @@ export function MobileNav() {
         <Logo />
         <span className="sr-only">AtLink</span>
       </Link>
-      {navLinks.map(({ href, label, icon: Icon, badge }) => (
+      {accessibleLinks.map(({ href, label, icon: Icon, badge }) => (
         <Link
           key={href}
           href={href}

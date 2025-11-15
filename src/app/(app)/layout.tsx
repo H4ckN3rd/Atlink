@@ -25,12 +25,15 @@ import { SidebarNav } from '@/components/dashboard/sidebar-nav'
 import { MobileNav } from '@/components/dashboard/mobile-nav'
 import { Skeleton } from '@/components/ui/skeleton'
 
+type UserRole = 'admin' | 'student'
+
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   const [user, setUser] = useState<FirebaseUser | null>(null)
+  const [userRole, setUserRole] = useState<UserRole>('student')
   const [loading, setLoading] = useState(true)
   const router = useRouter()
   const pathname = usePathname()
@@ -39,6 +42,15 @@ export default function DashboardLayout({
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser)
+        // Simple role-check: if the email is admin@example.com, they are an admin.
+        const role = currentUser.email === 'admin@example.com' ? 'admin' : 'student';
+        setUserRole(role);
+
+        // If a student tries to access the /users page, redirect them.
+        if (role === 'student' && pathname.startsWith('/users')) {
+            router.replace('/');
+        }
+
       } else {
         router.push('/login')
       }
@@ -46,7 +58,7 @@ export default function DashboardLayout({
     })
 
     return () => unsubscribe()
-  }, [router])
+  }, [router, pathname])
 
   const handleLogout = async () => {
     await auth.signOut()
@@ -101,7 +113,7 @@ export default function DashboardLayout({
             </Button>
           </div>
           <div className="flex-1">
-            <SidebarNav />
+            <SidebarNav userRole={userRole} />
           </div>
         </div>
       </div>
@@ -119,7 +131,7 @@ export default function DashboardLayout({
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="flex flex-col">
-              <MobileNav />
+              <MobileNav userRole={userRole} />
             </SheetContent>
           </Sheet>
           <div className="w-full flex-1">
@@ -157,7 +169,11 @@ export default function DashboardLayout({
           </DropdownMenu>
         </header>
         <main className="flex flex-1 flex-col gap-4 bg-muted/40 p-4 lg:gap-6 lg:p-6">
-          {children}
+          {userRole === 'student' && pathname.startsWith('/users') ? (
+            <div>Redirecting...</div>
+          ) : (
+            children
+          )}
         </main>
       </div>
     </div>

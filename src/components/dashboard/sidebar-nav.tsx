@@ -6,18 +6,26 @@ import { Home, Users, CalendarCheck } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 
+type UserRole = 'admin' | 'student';
+
 const navLinks = [
-  { href: '/', label: 'Dashboard', icon: Home },
-  { href: '/attendance', label: 'Attendance', icon: CalendarCheck },
-  { href: '/users', label: 'Users', icon: Users },
+  { href: '/', label: 'Dashboard', icon: Home, roles: ['admin', 'student'] },
+  { href: '/attendance', label: 'Attendance', icon: CalendarCheck, roles: ['admin', 'student'] },
+  { href: '/users', label: 'Users', icon: Users, roles: ['admin'] },
 ]
 
-export function SidebarNav() {
+type SidebarNavProps = {
+  userRole: UserRole;
+}
+
+export function SidebarNav({ userRole }: SidebarNavProps) {
   const pathname = usePathname()
+
+  const accessibleLinks = navLinks.filter(link => link.roles.includes(userRole));
 
   return (
     <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-      {navLinks.map(({ href, label, icon: Icon, badge }) => (
+      {accessibleLinks.map(({ href, label, icon: Icon, badge }) => (
         <Link
           key={href}
           href={href}
