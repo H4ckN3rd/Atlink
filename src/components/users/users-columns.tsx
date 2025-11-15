@@ -16,6 +16,7 @@ import {
 
 type GetColumnsParams = {
   onEdit: (user: User) => void;
+  onViewAttendance: (user: User) => void;
 }
 
 const SortableHeader = ({
@@ -34,7 +35,7 @@ const SortableHeader = ({
   </Button>
 )
 
-export const columns = ({ onEdit }: GetColumnsParams): ColumnDef<User>[] => [
+export const columns = ({ onEdit, onViewAttendance }: GetColumnsParams): ColumnDef<User>[] => [
   {
     id: 'select',
     header: ({ table }) => (
@@ -100,7 +101,7 @@ export const columns = ({ onEdit }: GetColumnsParams): ColumnDef<User>[] => [
               Copy user ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View attendance</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onViewAttendance(user)}>View attendance</DropdownMenuItem>
             <DropdownMenuItem onClick={() => onEdit(user)}>Edit user</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

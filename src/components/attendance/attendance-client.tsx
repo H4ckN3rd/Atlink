@@ -19,18 +19,20 @@ import {
 type AttendanceClientProps = {
   initialRecords: AttendanceRecord[]
   initialUsers: User[]
+  initialUserIdFilter?: string
 }
 
 export function AttendanceClient({
   initialRecords,
   initialUsers,
+  initialUserIdFilter
 }: AttendanceClientProps) {
   const [records] = useState<AttendanceRecord[]>(initialRecords)
   const [globalFilter, setGlobalFilter] = useState('')
   const [statusFilter, setStatusFilter] = useState<AttendanceStatus | 'all'>(
     'all'
   )
-  const [userFilter, setUserFilter] = useState<string | 'all'>('all')
+  const [userFilter, setUserFilter] = useState<string | 'all'>(initialUserIdFilter || 'all')
   const [dateFilter, setDateFilter] = useState<Date | undefined>(undefined)
 
   const [isClient, setIsClient] = useState(false)

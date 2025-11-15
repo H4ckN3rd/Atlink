@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useMemo } from 'react'
+import { useRouter } from 'next/navigation'
 import { type User } from '@/lib/types'
 import { DataTable } from '@/components/users/users-data-table'
 import { columns } from '@/components/users/users-columns'
@@ -26,6 +27,7 @@ export function UsersClient({ initialUsers }: UsersClientProps) {
   const [isAddUserOpen, setIsAddUserOpen] = useState(false)
   const [isEditUserOpen, setIsEditUserOpen] = useState(false)
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
+  const router = useRouter()
 
   const filteredRecords = useMemo(() => {
     return records.filter((record) => {
@@ -59,7 +61,11 @@ export function UsersClient({ initialUsers }: UsersClientProps) {
     setIsEditUserOpen(true)
   }
 
-  const userColumns = columns({ onEdit: handleEditClick });
+  const handleViewAttendanceClick = (user: User) => {
+    router.push(`/attendance?userId=${user.id}`);
+  }
+
+  const userColumns = columns({ onEdit: handleEditClick, onViewAttendance: handleViewAttendanceClick });
 
   return (
     <>

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { get, ref, onValue } from 'firebase/database'
 import { database } from '@/lib/firebase'
 import { type AttendanceRecord, type User } from '@/lib/types'
@@ -12,6 +13,9 @@ export default function AttendancePage() {
   const [records, setRecords] = useState<AttendanceRecord[]>([])
   const [users, setUsers] = useState<User[]>([])
   const [loading, setLoading] = useState(true)
+
+  const searchParams = useSearchParams()
+  const userIdFromQuery = searchParams.get('userId')
 
   useEffect(() => {
     const studentsRef = ref(database, 'Students')
@@ -121,5 +125,5 @@ export default function AttendancePage() {
     )
   }
 
-  return <AttendanceClient initialRecords={records} initialUsers={users} />
+  return <AttendanceClient initialRecords={records} initialUsers={users} initialUserIdFilter={userIdFromQuery || undefined} />
 }
