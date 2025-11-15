@@ -42,8 +42,8 @@ export default function DashboardLayout({
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser)
-        // Simple role-check: if the email is admin@example.com, they are an admin.
-        const role = currentUser.email === 'admin@example.com' ? 'admin' : 'student';
+        // Simple role-check: if the email is admin@atlink.com, they are an admin.
+        const role = currentUser.email === 'admin@atlink.com' ? 'admin' : 'student';
         setUserRole(role);
 
         // If a student tries to access the /users page, redirect them.
