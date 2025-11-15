@@ -14,15 +14,18 @@ import {
 import { Button } from '@/components/ui/button'
 import { PlusCircle } from 'lucide-react'
 import { AddUserDialog } from './add-user-dialog'
+import { EditUserDialog } from './edit-user-dialog'
 
 type UsersClientProps = {
   initialUsers: User[]
 }
 
 export function UsersClient({ initialUsers }: UsersClientProps) {
-  const [records] = useState<User[]>(initialUsers)
+  const [records, setRecords] = useState<User[]>(initialUsers)
   const [globalFilter, setGlobalFilter] = useState('')
   const [isAddUserOpen, setIsAddUserOpen] = useState(false)
+  const [isEditUserOpen, setIsEditUserOpen] = useState(false)
+  const [selectedUser, setSelectedUser] = useState<User | null>(null)
 
   const filteredRecords = useMemo(() => {
     return records.filter((record) => {
@@ -44,10 +47,30 @@ export function UsersClient({ initialUsers }: UsersClientProps) {
       return true
     })
   }, [records, globalFilter])
+  
+  // This effect ensures the client-side `records` state is updated when `initialUsers` changes from Firebase
+  React.useEffect(() => {
+    setRecords(initialUsers)
+  }, [initialUsers])
+
+
+  const handleEditClick = (user: User) => {
+    setSelectedUser(user)
+    setIsEditUserOpen(true)
+  }
+
+  const userColumns = columns({ onEdit: handleEditClick });
 
   return (
     <>
       <AddUserDialog open={isAddUserOpen} onOpenChange={setIsAddUserOpen} />
+      {selectedUser && (
+        <EditUserDialog
+          user={selectedUser}
+          open={isEditUserOpen}
+          onOpenChange={setIsEditUserOpen}
+        />
+      )}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
@@ -63,7 +86,7 @@ export function UsersClient({ initialUsers }: UsersClientProps) {
         </CardHeader>
         <CardContent>
           <DataTable
-            columns={columns}
+            columns={userColumns}
             data={filteredRecords}
             filters={{
               globalFilter,

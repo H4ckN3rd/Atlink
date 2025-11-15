@@ -14,6 +14,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
+type GetColumnsParams = {
+  onEdit: (user: User) => void;
+}
+
 const SortableHeader = ({
   column,
   children,
@@ -30,7 +34,7 @@ const SortableHeader = ({
   </Button>
 )
 
-export const columns: ColumnDef<User>[] = [
+export const columns = ({ onEdit }: GetColumnsParams): ColumnDef<User>[] => [
   {
     id: 'select',
     header: ({ table }) => (
@@ -97,7 +101,7 @@ export const columns: ColumnDef<User>[] = [
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View attendance</DropdownMenuItem>
-            <DropdownMenuItem>Edit user</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onEdit(user)}>Edit user</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
