@@ -18,11 +18,8 @@ export function Logo({ className }: { className?: string }) {
   return (
     <div className={cn('relative h-12 w-12', className)}>
       {isClient ? (
-        <Image src={src} alt="AtLink Logo" fill priority sizes="(max-width: 768px) 48px, 40px" />
+        <Image src={src} alt="AtLink Logo" fill priority sizes="(max-width: 768px) 48px, 48px" />
       ) : (
-        // Provide a fallback or placeholder to avoid layout shift,
-        // or simply render nothing on the server for the image itself.
-        // An SVG placeholder can also be used here.
         <div className="h-full w-full rounded-full bg-muted" />
       )}
     </div>
