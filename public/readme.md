@@ -1,0 +1,1 @@
+This directory is for static assets, such as images, fonts, and your favicon. Files in this folder can be referenced directly from the root of your application URL (e.g., /logo.png).
