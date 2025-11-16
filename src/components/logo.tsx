@@ -16,7 +16,7 @@ export function Logo({ className }: { className?: string }) {
   const src = theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'
 
   return (
-    <div className={cn('relative h-10 w-10', className)}>
+    <div className={cn('relative h-12 w-12', className)}>
       {isClient ? (
         <Image src={src} alt="AtLink Logo" fill priority sizes="(max-width: 768px) 48px, 40px" />
       ) : (
