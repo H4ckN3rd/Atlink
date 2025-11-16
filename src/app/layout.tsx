@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 export const metadata: Metadata = {
   title: 'AtLink Dashboard',
   description: 'Attendance Management Dashboard',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({
