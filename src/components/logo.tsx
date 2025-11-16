@@ -16,9 +16,9 @@ export function Logo({ className }: { className?: string }) {
   const src = theme === 'dark' ? '/logo-dark.png' : '/logo-light.png'
 
   return (
-    <div className={cn('relative h-9 w-9', className)}>
+    <div className={cn('relative h-10 w-10', className)}>
       {isClient ? (
-        <Image src={src} alt="AtLink Logo" fill priority sizes="(max-width: 768px) 48px, 36px" />
+        <Image src={src} alt="AtLink Logo" fill priority sizes="(max-width: 768px) 48px, 40px" />
       ) : (
         // Provide a fallback or placeholder to avoid layout shift,
         // or simply render nothing on the server for the image itself.

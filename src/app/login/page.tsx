@@ -52,7 +52,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
             <div className="flex justify-center items-center mb-4">
-                <Logo className="h-12 w-12"/>
+                <Logo className="h-14 w-14"/>
             </div>
           <CardTitle className="text-2xl">Welcome to AtLink</CardTitle>
           <CardDescription>
