@@ -21,7 +21,6 @@ import { Input } from '@/components/ui/input'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Logo } from '@/components/logo'
 import { SidebarNav } from '@/components/dashboard/sidebar-nav'
 import { MobileNav } from '@/components/dashboard/mobile-nav'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -105,7 +104,7 @@ export default function DashboardLayout({
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
              <Link href="/" className="flex items-center gap-2 font-semibold text-primary">
-              <Logo className="h-[52px] w-[52px]"/>
+              <span className="text-xl">AtLink</span>
             </Link>
           </div>
           <div className="flex-1">
