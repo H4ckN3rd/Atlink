@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Home, Users, CalendarCheck } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
+import { Logo } from '@/components/logo'
 
 type UserRole = 'admin' | 'student';
 
@@ -27,9 +28,10 @@ export function MobileNav({ userRole }: MobileNavProps) {
     <nav className="grid gap-2 text-lg font-medium">
       <Link
         href="/"
-        className="mb-4 flex items-center gap-2 text-lg font-semibold text-primary"
+        className="mb-4 flex items-center gap-2 text-lg font-semibold"
       >
-        <span className="text-xl">AtLink</span>
+        <Logo className="h-8 w-8" />
+        <span className="text-primary text-xl">AtLink</span>
       </Link>
       {accessibleLinks.map(({ href, label, icon: Icon, badge }) => (
         <Link
