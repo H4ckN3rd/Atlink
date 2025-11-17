@@ -50,12 +50,12 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted/40">
       <Card className="w-full max-w-sm">
-        <CardHeader className="text-center">
+        <CardHeader className="text-center space-y-0">
             <div className="flex justify-center items-center">
                 <Logo className="h-28 w-28"/>
             </div>
           <CardTitle className="text-2xl">Welcome to AtLink</CardTitle>
-          <CardDescription>
+          <CardDescription className="pt-1.5">
             Enter your email and password to access your dashboard.
           </CardDescription>
         </CardHeader>
