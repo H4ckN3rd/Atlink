@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { onAuthStateChanged, type User as FirebaseUser } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import Link from 'next/link'
-import { Bell, Menu, Search, User } from 'lucide-react'
+import { Menu, Search, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -130,7 +130,9 @@ export default function DashboardLayout({
             </SheetContent>
           </Sheet>
            <div className="hidden items-center gap-2 font-semibold text-primary md:flex">
-             
+             <Link href="/" className="flex items-center gap-2 font-semibold text-primary">
+                <Logo className="h-[52px] w-[52px]" />
+              </Link>
            </div>
           <div className="w-full flex-1">
             <form>
