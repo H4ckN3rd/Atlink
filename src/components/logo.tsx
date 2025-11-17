@@ -18,7 +18,7 @@ export function Logo({ className }: { className?: string }) {
   return (
     <div className={cn('relative h-10 w-10', className)}>
       {isClient ? (
-        <Image src={src} alt="AtLink Logo" fill priority sizes="(max-width: 768px) 112px, 40px" />
+        <Image src={src} alt="AtLink Logo" fill priority sizes="(max-width: 768px) 40px, 40px" />
       ) : (
         <div className="h-full w-full rounded-full bg-muted" />
       )}
