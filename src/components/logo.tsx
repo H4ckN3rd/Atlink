@@ -15,13 +15,9 @@ export function Logo({ className }: { className?: string }) {
 
   const getLogoSrc = () => {
     if (!isClient) {
-      // Default to dark logo for server-side rendering to avoid flash
       return '/logo-dark.svg'
     }
-    if (theme === 'dark' || (theme === 'system' && typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      return '/logo-dark.svg'
-    }
-    return '/logo-white.svg'
+    return theme === 'light' ? '/logo-white.svg' : '/logo-dark.svg'
   }
 
   return (
