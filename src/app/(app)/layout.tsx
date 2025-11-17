@@ -1,4 +1,5 @@
 
+
 'use client'
 
 import React, { useEffect, useState } from 'react'
@@ -102,9 +103,9 @@ export default function DashboardLayout({
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-card md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
-          <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+          <div className="flex h-20 items-center border-b px-4 lg:h-[80px] lg:px-6">
              <Link href="/" className="flex items-center gap-2 font-semibold text-primary">
-              <Logo className="h-[52px] w-[52px]"/>
+              <Logo className="h-[60px] w-[60px]"/>
             </Link>
           </div>
           <div className="flex-1">
