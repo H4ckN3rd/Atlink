@@ -129,11 +129,6 @@ export default function DashboardLayout({
               <MobileNav userRole={userRole} />
             </SheetContent>
           </Sheet>
-           <div className="hidden items-center gap-2 font-semibold text-primary md:flex">
-             <Link href="/" className="flex items-center gap-2 font-semibold text-primary">
-                <Logo className="h-[52px] w-[52px]" />
-              </Link>
-           </div>
           <div className="w-full flex-1">
             <form>
               <div className="relative">

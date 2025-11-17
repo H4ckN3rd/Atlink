@@ -30,7 +30,7 @@ export function MobileNav({ userRole }: MobileNavProps) {
         href="/"
         className="mb-4 flex items-center gap-2 text-lg font-semibold text-primary"
       >
-        <Logo className="h-[52px] w-[52px]"/>
+        <Logo className="h-12 w-12"/>
         <span className="sr-only">AtLink</span>
       </Link>
       {accessibleLinks.map(({ href, label, icon: Icon, badge }) => (
