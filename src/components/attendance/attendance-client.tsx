@@ -33,7 +33,7 @@ export function AttendanceClient({
     'all'
   )
   const [userFilter, setUserFilter] = useState<string | 'all'>(initialUserIdFilter || 'all')
-  const [dateFilter, setDateFilter] = useState<Date | undefined>(undefined)
+  const [dateFilter, setDateFilter] = useState<Date | undefined>(new Date())
 
   const [isClient, setIsClient] = useState(false)
   useEffect(() => {
